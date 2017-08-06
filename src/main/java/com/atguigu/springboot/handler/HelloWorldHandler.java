@@ -18,6 +18,6 @@ public class HelloWorldHandler {
 	@RequestMapping("/hello02")
 	public List<String> hello02(){
 		
-		return Arrays.asList(new String[]{"昨日像那东流水"});
+		return Arrays.asList(new String[]{"昨日像那东流水主工程"});
 	}
 }
