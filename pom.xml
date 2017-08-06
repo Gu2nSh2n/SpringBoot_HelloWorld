@@ -62,6 +62,76 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- 热启动在正常开发项目中已经很常见了吧，虽然平时开发web项目过程中，改动项目启重启总是报错； 但springBoot对调试支持很好，修改之后可以实时生效，需要添加以下的配置： 
+			该模块在完整的打包环境下运行的时候会被禁用。如果你使用java -jar启动应用或者用一个特定的classloader启动， 它会认为这是一个“生产环境”。 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- 配置数据库jpa 的使用 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+	<!-- 1、什么是WebJars？WebJars是将客户端（浏览器）资源（JavaScript，Css等） 打成jar包文件， 以对资源进行统一依赖管理。
+		 2、WebJars的jar包部署在Maven中央仓库上。 我们在开发Java web项目的时候会使用像Maven，
+		 Gradle等构建工具以实现对jar包版本依赖管理， 以及项目的自动化管理，
+		 但是对于JavaScript，Css等前端资源包，我们只能采用拷贝到webapp下的方式，这样做就无法对这些资源进行依赖管理。 
+		 那么WebJars就提供给我们这些前端资源的jar包形势，我们就可以进行依赖管理。 
+		3、WebJars主官网 查找对于的组件，比如Vuejs\ 
+		4、页面引入 <link th:href="@{/webjars/bootstrap/3.3.6/dist/css/bootstrap.css}" rel="stylesheet"></link> -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>vue</artifactId>
+			<version>1.0.21</version>
+		</dependency>
+
+		<!-- redis配置 -->
+		<dependency>  
+		    <groupId>org.springframework.boot</groupId>  
+		    <artifactId>spring-boot-starter-redis</artifactId>  
+		</dependency>
+		<!-- thymeleaf模板 -->
+		 <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	     </dependency>
+			
+		<!-- Mybatis 整合boot -->
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
+		<!-- 发送邮件 -->
+		  <dependency> 
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-mail</artifactId>
+	    </dependency> 
+		
+		<!-- shiro 
+			需要配置thymeleaf的环境；
+			thymeleaf的配置是为了去掉html的校验
+		-->
+		 <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -80,6 +150,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin </artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
